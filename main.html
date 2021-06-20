@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>main</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    
+    <style>
+      *{
+    margin: 0px;
+    padding: 0px;
+    }
+   img{height: 300px; 
+    width: 70%;}
+    .a1{height: 50px;}
+    form{
+        padding: 10px;
+        background-color: limegreen;
+        border-radius: 10%;
+    }
+    .modal{
+        background-color: rgb(134, 175, 230);
+        border-radius: 10%;
+    }
+    .a1{
+      background-color: rgb(75, 221, 30);
+      
+      height: 60px;
+    }
+    
+        
+    </style>
+</head>
+<body class="bg-primary">
+    <div class="container text-center">
+        <div class="w-100  text-center"><img src="img\img1.png" alt="Attendance System"></div>
+        <div class="h1 text-center text-justify text-white">Attendance System</div>
+        <div>
+            <button class="a1 col-5 rounded " data-toggle="modal" data-target="#regModal">Register</button>
+            <button class="a1 col-5 rounded " data-toggle="modal" data-target="#logModal">Login</button>
+        </div>
+                
+       
+       <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Regstration</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <form action="#" id="regis" class="row position-relative flex-column needs-validation" novalidate>
+              
+              <input type="text" name="textf" placeholder="Your first name" class=" bg-white col-11 ml-3 form-control" id="fname"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid name
+              </div>
+              <input type="text" name="texts" placeholder="Your second name" class=" bg-white m-1 col-11 ml-3 form-control" id="sname"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid name
+              </div>
+              <input type="text" name="address" placeholder="Your Address" class=" bg-white col-11 ml-3 form-control" id="add"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid address
+              </div>
+              <input type="email" name="email" placeholder="Your email ID.." class="email bg-white m-1 col-11 ml-3 form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+              
+              <div class="invalid-feedback feedback-pos">
+                   Please input valid email ID
+              </div>
+              <input type="text" name="age" placeholder="Your Age" class=" bg-white m-1 col-11 ml-3 form-control" id="age"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid age
+              </div>
+              
+              <input type="text" name="userName" placeholder="plz enter your userName wanted to be" class=" white m-1 col-11 ml-3 form-control" id="username"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid username
+              </div>
+              <input type="password" name="pass" placeholder="plz enter your password wanted to be" class=" white m-1 col-11 ml-3 form-control" id="password"  required>
+              
+              <div class="invalid-feedback feedback-pos">
+                Please input valid password
+              </div>
+              <button type="submit" id="regist" class="btn btn-primary text-uppercase sbmt-btn m-1 col-11 ml-3" value="validate">Regist</button>
+             
+            </form>
+
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+       
+      <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" >
+              <form action="#" class="was-validated" id="logform">
+                <div class="form-group">
+                  <label for="uname">Username:</label>
+                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-50" id="logemp">Login</button>
+              </form>
+                
+                
+            </div>
+            
+          </div>
+        </div>
+      </div>
+     </div>
+    
+    
+
+    
+    
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <script src="js/JQuery-3.3.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="main.js"></script>
+    <script>
+                  
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>subAdmin page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/font-awesome.css" rel="stylesheet" />    
+        <style>
+         
+            body{
+                background-color: rgb(117, 219, 22);
+            }
+            ul{
+                box-shadow: 5px 5px 20px blue,10px 10px 100px rgb(98, 98, 105) inset;
+             border-radius: 5%;
+             height: 250px;
+            }
+            span{color: white; 
+            }
+            
+       
+           ul li{
+               margin-top:2em;
+           }
+          
+            
+            
+        </style>
+    </head>
+    <body>
+     
+    <div class="container text-center mt-4" >
+        <form action="#" class="was-validated">
+            <div class="form-group ">
+            
+                <input type="text" class="form-control" id="empname" placeholder="Enter username" name="uname" required>
+                
+             </div>
+             <button type="submit" class="btn btn-primary" id="logsub" >Confirm Attendance</button>
+             <button id="excuse">Excuse</button>
+             
+             
+        </form>
+        <ul  id="empData" class="collapse list-unstyled mt-4" >
+            <li > Name: <span id="nameAtt" ></span> </li>
+            <li> Time: <span id="timeAtt"></span></li>
+            <li> state: <span id="state"></span></li>
+           
+        </ul>
+        
+      
+    </div>                      
+
+
+
+
+
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <script src="js/JQuery-3.3.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
+    <script >
+        let arr=[];
+        let flag=0;
+        
+      var ajaxempdata= function(){    // data from empolyee(username and password) file
+            
+        $.ajax({
+        url: './empdata_month.json',
+            type: "get",
+            success: function (res) {
+               arr=res;
+            },
+            error: function (ErrorMessage) {
+                console.log(ErrorMessage);
+            }
+         })
+         return arr;}
+         ajaxempdata();
+        
+             
+    
+        $('#logsub').on("click",function(){   //click on------>confirm attendance button
+        var dt=new Date();
+        var state="";
+        h=dt.getHours();
+        m=dt.getMinutes();
+        s=dt.getSeconds();
+        var time =h + ":" + m+":"+s;
+        let empObj={};
+            
+            for(var i=1;i<arr.length;i++){
+                let attendanceCount=parseInt(arr[i].attendance);
+                let abscenceCount=parseInt(arr[i].abscent);
+                let lateCount=parseInt(arr[i].late);
+                let excuseCount=parseInt(arr[i].excuse);
+       if($('#empname').val()==arr[i].code){
+       
+        if(h>='8' &&h<='9' ){
+            state="attendance";
+            $('#nameAtt').html(arr[i].name);
+            $('#timeAtt').html(time);
+            $('#state').html(state);
+            arr[i].attendance=attendanceCount+1;
+            arr[i].state=state;
+            arr[i].time=time;
+            $('#empData').toggle();
+            saveData();
+          }else if(h =='9'&& m<='15'){
+            state="late";
+            $('#nameAtt').html(arr[i].name);
+            $('#timeAtt').html(time);
+            $('#state').html(state);
+             arr[i].late=lateCount+1;
+             arr[i].state=state;
+            arr[i].time=time;
+            $('#empData').toggle();
+            saveData();
+        
+
+        }else {
+            state="abscent";
+            arr[i].abscent=abscenceCount+1;
+            $('#nameAtt').html(arr[i].name);
+            $('#timeAtt').html(time);
+            $('#state').html(state);
+            arr[i].state=state;
+            arr[i].time=time;
+            $('#empData').toggle();
+            saveData();
+        } 
+     
+    }
+    }
+    
+
+       
+       
+            
+
+        });
+        $('#excuse').on('click',function(){
+            for(var i=0;i<arr.length;i++){
+            if($('#empname').val()==arr[i].code){
+                arr[i].excuse=parseInt(arr[i].excuse)+1;
+                saveData();
+
+            }}
+
+        });
+        function saveData(){
+            var _StoreData = new Blob([JSON.stringify(arr)], { type: "appliction/json" });
+            var Linkelement = document.createElement("a");
+                Linkelement.href = window.webkitURL.createObjectURL(_StoreData);
+                Linkelement.setAttribute("download", "empdata_month.json");
+               document.body.appendChild(Linkelement);
+                Linkelement.click();
+                document.body.removeChild(Linkelement);
+
+
+
+        }
+       
+       
+
+    </script>
+ </body>
+</html>
